@@ -1,0 +1,97 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'base';
+
+$font-stack:Helvetica, sans-serif;
+$primary-color:#FFF;
+
+body{
+    font: $font-stack;
+    background-color: $primary-color;
+}
+
+@function adjust_width($n){
+  @return $n * base.$first-width + ($n - 1) * base.$second-width
+}
+
+.inverse{
+    background-color:base.$backDivColor;
+    font-family: base.$font-stack1;
+    width: 120px;
+    height: 50px;
+    padding-left: adjust_width(3);
+}
+
+// mixings in scss
+// mixings are used in scss not to repeat same css properties.
+// The @mixin directive lets you create CSS code that is to be reused throughout the website. 
+// The @include directive is created to let you use (include) the mixin.
+
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+.main{
+    // using MIXIN
+    @include flexCenter(row);
+    
+    // using OPERATIONS in scss means calculation
+
+    width: 80% - 40%;
+    margin: 0 auto;
+  }
+
+@mixin theme($theme: DarkGray) {
+    background: $theme;
+    box-shadow: 0 0 1px rgba($theme, 1);
+    color: rgb(6, 131, 6);
+  }
+
+  .info {
+    @include theme;
+  }
+  .alert {
+    @include theme($theme: DarkRed);
+  }
+  .success {
+    @include theme($theme: DarkGreen);
+    color: #FFF;
+  }
+
+  %message-shared {
+    border: 1px solid rgb(99, 4, 4);
+    padding: 10px;
+    color: #333;
+  }
+
+  // The @extend directive lets you share a set of CSS properties from one selector to another. 
+  // The @extend directive is useful if you have almost identically 
+  // styled elements that only differ in some small details.
+  
+  .message {
+    @extend %message-shared;
+  }
+
+  .bxSizn{
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border: 1px solid gray;
+    padding: 20px 20px 20px 20px;
+    margin-left: 5px;
+    box-sizing: border-box;
+  }
+
+  #bxSizn{
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border: 1px solid gray;
+    padding: 20px 20px 20px 20px;
+    margin-left: 5px;
+    box-sizing: border-box;
+  }
