@@ -40,3 +40,13 @@
     <button type="button" (click)="createComponent('danger')">Create danger alert</button>
   </div>
 </div>
+<br>
+<br>
+<div class='examples1'>
+  <div *ngFor="let imageof of company">
+    <img src="{{imageof.image}}" width="75" height="75">
+    <div style="color: black; width: 75px; height: auto;">
+      {{imageof.name}}
+    </div>
+  </div>
+</div>

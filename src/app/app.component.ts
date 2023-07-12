@@ -6,6 +6,7 @@ import { BehaviorSubject, from, Observable, of, Subject } from 'rxjs';
 import {  mergeMap, flatMap, concatMap, switchMap, exhaustMap } from 'rxjs/operators';
 import { HttpSrvService } from './http-srv.service';
 import { AlertComponent } from './alert/alert.component';
+import { Productstore } from './model/productstore.model';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,9 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'cssPre';
 
    subjectTest = new Subject();
-   behaviorSubjectTest = new BehaviorSubject(null)
+   behaviorSubjectTest = new BehaviorSubject(null);
+   productStor = [];
+   company:Productstore[] = [];
   // for dynamic component starts here 
 
    @ViewChild('alertContainer',{read: ViewContainerRef}) container; 
@@ -102,6 +105,7 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     }
     ngOnInit(): void {
+      this.getProducts();
       this.getDogsBreed();
       this.getDogsBreeterrier();
       this.getDogsBreeterrierWithsubscribe();
@@ -160,6 +164,15 @@ export class AppComponent implements OnInit, OnDestroy {
       });
     }
 
+    getProducts(){
+      this.httpService.getStoreProducts().subscribe((result)=>{
+        this.productStor = result;
+        this.company = result.filter((resItem)=>{
+          return resItem.company === "ikea";
+        });
+        console.log("GET FILTERED COMPANY FROM API:::===",this.company);
+      })
+    }
     prepairOrder(order){
       const delayTime = Math.floor(Math.random() * 1000) + 1;
       return of(`I'm ${order} I'M ready after ${delayTime} ms`).pipe(
