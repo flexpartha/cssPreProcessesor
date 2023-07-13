@@ -167,10 +167,10 @@ export class AppComponent implements OnInit, OnDestroy {
     getProducts(){
       this.httpService.getStoreProducts().subscribe((result)=>{
         this.productStor = result;
-        this.company = result.filter((resItem)=>{
-          return resItem.company === "ikea";
-        });
-        console.log("GET FILTERED COMPANY FROM API:::===",this.company);
+        // this.company = result.filter((resItem)=>{
+        //   return resItem.company === "ikea";
+        // });
+        console.log("GET FILTERED COMPANY FROM API:::===",this.productStor);
       })
     }
     prepairOrder(order){

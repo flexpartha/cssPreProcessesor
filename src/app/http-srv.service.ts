@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Productstore } from './model/productstore.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,12 @@ export class HttpSrvService {
   }
 
   getStoreProducts():Observable<Productstore[]>{
-    return this.http.get<Productstore[]>('https://course-api.com/react-store-products');
+    return this.http.get<Productstore[]>('https://course-api.com/react-store-products')
+    .pipe(
+      map((response)=>{
+        //console.log(response.filter(v => v.company === "ikea"));
+        return response.filter(v => v.company === "ikea");
+      })
+    );
   }
 }
