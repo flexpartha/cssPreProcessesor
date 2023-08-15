@@ -42,8 +42,18 @@
 </div>
 <br>
 <br>
-<div class='examples1'>
+<!-- Without Async pipe implementation -->
+<!-- <div class='examples1'>
   <div *ngFor="let imageof of productStor">
+    <img src="{{imageof.image}}" width="75" height="75">
+    <div style="color: black; width: 75px; height: auto;">
+      {{imageof.name}}
+    </div>
+  </div>
+</div> -->
+<!-- With Async pipe implementation -->
+<div class='examples1'>
+  <div *ngFor="let imageof of productstorAsync$ | async">
     <img src="{{imageof.image}}" width="75" height="75">
     <div style="color: black; width: 75px; height: auto;">
       {{imageof.name}}

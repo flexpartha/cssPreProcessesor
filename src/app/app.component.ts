@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
    subjectTest = new Subject();
    behaviorSubjectTest = new BehaviorSubject(null);
    productStor = [];
+   productstorAsync$:Observable<Productstore[]>
    company:Productstore[] = [];
   // for dynamic component starts here 
 
@@ -105,6 +106,7 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     }
     ngOnInit(): void {
+      this.getProductswithAsync();
       this.getProducts();
       this.getDogsBreed();
       this.getDogsBreeterrier();
@@ -172,6 +174,10 @@ export class AppComponent implements OnInit, OnDestroy {
         // });
         console.log("GET FILTERED COMPANY FROM API:::===",this.productStor);
       })
+    }
+    getProductswithAsync(){
+      // with Async pipe synchronisation
+      this.productstorAsync$ = this.httpService.getStoreProducts();
     }
     prepairOrder(order){
       const delayTime = Math.floor(Math.random() * 1000) + 1;
