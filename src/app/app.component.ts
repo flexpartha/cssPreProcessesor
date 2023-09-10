@@ -142,9 +142,9 @@ export class AppComponent implements OnInit, OnDestroy {
       // with map 
       let newProduct = this.products.map((item)=>{
         return {
-          productImage: item.productImage,
-          imageType: item.imageType,
-          imageTitle: item.imageTitle
+          productImage_new: item.productImage,
+          imageType_new: item.imageType,
+          imageTitle_new: item.imageTitle
         }
       });
       console.log("newProduct$::--",newProduct);
