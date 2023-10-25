@@ -24,7 +24,7 @@ export class HttpSrvService {
     .pipe(
       map((response)=>{
         //console.log(response.filter(v => v.company === "ikea"));
-        return response.filter(v => v.company === "ikea");
+        return response.filter(v => v.company === "liddy");
       })
     );
   }

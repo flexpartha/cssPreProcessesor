@@ -53,10 +53,13 @@
 </div> -->
 <!-- With Async pipe implementation -->
 <div class='examples1'>
-  <div *ngFor="let imageof of productstorAsync$ | async">
+  <div  *ngFor="let imageof of productstorAsync$ | async">
     <img src="{{imageof.image}}" width="75" height="75">
-    <div style="color: black; width: 75px; height: auto;">
+    <div style="color: black; width: auto; height: auto;">
       {{imageof.name}}
+    </div>
+    <div style="display: inline-block; width:20px; height: 20px; margin-right: 2px;" *ngFor="let color of imageof.colors;"
+         [style.background-color]="color">
     </div>
   </div>
 </div>
